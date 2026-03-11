@@ -8,18 +8,7 @@ def global_avg_pool(x):
     # Write code here
     if x.ndim==3:
         C, H, W = x.shape
-        gaps = []
-        for i in range(C):
-            gap = (1 / (H * W)) * np.sum(x[i])
-            gaps.append(gap)
-        return gaps
+        return [(1 / (H * W)) * np.sum(x[c]) for c in range(C)]
     else:
         N, C, H, W = x.shape
-        gaps_n = []
-        for i in range(N):
-            gaps_c = []
-            for j in range(C):
-                gap = (1 / (H * W)) * np.sum(x[i][j])
-                gaps_c.append(gap)
-            gaps_n.append(gaps_c)
-        return gaps_n
+        return [[(1 / (H * W)) * np.sum(x[n][c]) for c in range(C)] for n in range(N)]
