@@ -14,5 +14,4 @@ def covariance_matrix(X):
         return None
     else:
         cov = 1 / (X.shape[0] - 1) * X_cen.T @ X_cen
-
         return cov
