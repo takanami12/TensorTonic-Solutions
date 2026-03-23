@@ -7,7 +7,7 @@ def add_position_embedding(patches: np.ndarray, num_patches: int, embed_dim: int
     # YOUR CODE HERE
     B, N, D = patches.shape
     
-    E_pos = np.random.randn(num_patches, embed_dim)
+    E_pos = np.random.randn(1, num_patches, embed_dim) * 0.02
 
     embedding = patches + E_pos
 
