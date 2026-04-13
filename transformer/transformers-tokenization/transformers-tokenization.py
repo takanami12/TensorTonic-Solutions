@@ -28,7 +28,6 @@ class SimpleTokenizer:
             text.extend(t.lower().split())
         unique_char = set(text)
         unique_char = sorted(unique_char)
-        self.unique = unique_char
         self.id_to_word = {i+4: char for i, char in enumerate(unique_char)}
         self.id_to_word.update({0: "<PAD>", 1: "<UNK>", 2: "<BOS>", 3: "<EOS>"})
         self.word_to_id = {char: i+4 for i, char in enumerate(unique_char)}
@@ -42,7 +41,7 @@ class SimpleTokenizer:
         """
         # YOUR CODE HERE
         text = text.lower().split()
-        output = [self.word_to_id[t] if t in self.unique else 1 for t in text]
+        output = [self.word_to_id[t] if t in self.word_to_id.keys() else 1 for t in text]
         return output
     
     def decode(self, ids: List[int]) -> str:
